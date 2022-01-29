@@ -1,0 +1,635 @@
+# Gaia Beam
+tech_pk_gaia_beam = {
+	area = society
+	cost = 20000
+	tier = 5
+	is_rare = yes
+	category = { new_worlds }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_country_flag = colossus_project
+		has_ascension_perk = ap_mastery_of_nature
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_expertise_new_worlds"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_gaia_beam }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+
+# Advance Gaia Beam
+tech_pk_gaia_beam_2 = {
+	area = society
+	cost = 22500
+	tier = 5
+	is_rare = yes
+	category = { new_worlds }
+	prerequisites = { "tech_pk_gaia_beam" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_country_flag = colossus_project
+		has_ascension_perk = ap_mastery_of_nature
+	}
+
+	modifier = {
+		custom_tooltip = ADVANCE_TERRAFORM
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_expertise_new_worlds"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_gaia_beam }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+
+# Advance Gaia Beam
+tech_pk_gaia_beam_3 = {
+	area = society
+	cost = 25000
+	tier = 5
+	is_rare = yes
+	category = { new_worlds }
+	prerequisites = { "tech_pk_gaia_beam_2" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_country_flag = colossus_project
+		OR = {
+			has_ascension_perk = ap_galactic_wonders_utopia
+			has_ascension_perk = ap_galactic_wonders_megacorp
+			has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+		}
+	}
+
+	modifier = {
+		custom_tooltip = REBORN_TERRAFORM
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_expertise_new_worlds"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_gaia_beam }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+
+# Advance Gaia Beam
+tech_pk_gaia_beam_4 = {
+	area = society
+	cost = 25000
+	tier = 5
+	is_rare = yes
+	category = { new_worlds }
+	prerequisites = { "tech_pk_gaia_beam_3" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_country_flag = colossus_project
+		OR = {
+			has_ascension_perk = ap_galactic_wonders_utopia
+			has_ascension_perk = ap_galactic_wonders_megacorp
+			has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+		}
+	}
+
+	modifier = {
+		custom_tooltip = REVIVE_TERRAFORM
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_expertise_new_worlds"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_gaia_beam }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 3
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+
+# Mass Flow Beam
+tech_pk_mass_flow_beam = {
+	area = engineering
+	cost = 20000
+	tier = 5
+	is_rare = yes
+	category = { industry }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_country_flag = colossus_project
+		OR = {
+			has_ascension_perk = ap_mastery_of_nature
+			has_ascension_perk = ap_machine_worlds
+			has_ascension_perk = ap_hive_worlds
+		}
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_expertise_industry"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_mass_flow_beam }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+
+# Machine Beam
+tech_pk_machine_beam = {
+	area = society
+	cost = 20000
+	tier = 5
+	is_rare = yes
+	category = { new_worlds }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_authority = auth_machine_intelligence
+		has_country_flag = colossus_project
+		has_ascension_perk = ap_machine_worlds
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_expertise_new_worlds"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_machine_beam }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+	}
+}
+
+
+# Excrete Creep
+tech_pk_excrete_creep = {
+	area = society
+	cost = 20000
+	tier = 5
+	is_rare = yes
+	category = { new_worlds }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_authority = auth_hive_mind
+		has_country_flag = colossus_project
+		has_ascension_perk = ap_hive_worlds
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_expertise_new_worlds"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = society
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_excrete_creep }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+	}
+}
+
+# Mineral Discovery Beam & Fertilizer Beam & Solar Energy
+tech_planetary_beam = {
+	area = engineering
+	cost = 20000
+	tier = 5
+	is_rare = yes
+	category = { industry }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_country_flag = colossus_project
+		has_ascension_perk = ap_mastery_of_nature
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_expertise_industry"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_mineral_discovery_beam }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}
+
+# The Almighty
+tech_pk_the_almighty = {
+	area = engineering
+	cost = 20000
+	tier = 5
+	is_rare = yes
+	is_dangerous = yes
+	category = { industry }
+	prerequisites = { "tech_pk_cracker" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_country_flag = colossus_project
+		OR = {
+			has_ascension_perk = ap_galactic_wonders_utopia
+			has_ascension_perk = ap_galactic_wonders_megacorp
+			has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+		}
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_expertise_industry"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = engineering
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+		modifier = {
+			factor = @ap_technological_ascendancy_rare_tech
+			has_ascension_perk = ap_technological_ascendancy
+		}
+		modifier = {
+			factor = @federation_perk_factor
+			has_federation = yes
+			federation = {
+				has_federation_perk = rare_tech_boost
+				any_member = { has_technology = tech_pk_the_almighty }
+			}
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+		modifier = {
+			factor = 1.5
+			has_ethic = ethic_xenophobe
+		}
+		modifier = {
+			factor = 2
+			has_ethic = ethic_fanatic_xenophobe
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+	}
+}
+
+# Mobile Construction Vehicle
+tech_pk_mcv = {
+	area = engineering
+	cost = 20000
+	tier = 5
+	is_rare = yes
+	category = { computing }
+	prerequisites = { "tech_colossus" }
+	ai_update_type = military
+	weight = 20
+	
+	potential = {
+		has_country_flag = colossus_project
+		OR = {
+			has_ascension_perk = ap_galactic_wonders_utopia
+			has_ascension_perk = ap_galactic_wonders_megacorp
+			has_ascension_perk = ap_galactic_wonders_utopia_and_megacorp
+		}
+	}
+	
+	weight_modifier = {
+		factor = 0.50
+		modifier = {
+			factor = 0.20
+			NOR = {
+				research_leader = {
+					area = physics
+					has_trait = "leader_trait_expertise_industry"
+				}
+				research_leader = {
+					area = physics
+					has_trait = "leader_trait_curator"
+				}
+				research_leader = {
+					area = physics
+					has_trait = "leader_trait_maniacal"
+				}
+			}			
+		}
+	}
+	
+	ai_weight = {
+		factor = 0.25
+		modifier = {
+			factor = 2
+			has_ethic = ethic_materialist
+		}
+		modifier = {
+			factor = 4
+			has_ethic = ethic_fanatic_materialist
+		}
+	}
+}

@@ -1,0 +1,458 @@
+
+can_destroy_planet_with_GAIA_BEAM = {
+	OR = {
+		custom_tooltip = {
+			fail_text = is_recreation_beam
+			AND = {
+				is_planet_class = pc_black_hole
+				from = {
+					owner = {
+						has_technology = tech_pk_gaia_beam_4
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = is_reborn_beam
+			AND = {
+				is_ruined_planet = yes
+				from = {
+					owner = {
+						has_technology = tech_pk_gaia_beam_3
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = is_advanced_beam
+			AND = {
+				is_unhabitable_terrestrial = yes
+				from = {
+					owner = {
+						has_technology = tech_pk_gaia_beam_2
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = is_a_habitable_planet_include_gaia
+			is_a_habitable_planet_include_gaia = yes
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOT = {
+			is_shielded = yes
+		}
+	}
+}
+
+can_destroy_planet_with_MACHINE_BEAM = {
+	custom_tooltip = {
+		fail_text = target_is_machine_world
+		NOT = {
+			is_planet_class = pc_machine
+		}		
+	}
+	custom_tooltip = {
+		fail_text = is_a_habitable_planet_include_gaia
+		is_a_habitable_planet_include_gaia = yes
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOT = {
+			is_shielded = yes
+		}
+	}
+}
+
+can_destroy_planet_with_EXCRETE_CREEP = {
+	custom_tooltip = {
+		fail_text = target_is_hive_world
+		NOT = {
+			is_planet_class = pc_hive
+		}		
+	}
+	custom_tooltip = {
+		fail_text = is_a_habitable_planet_include_gaia
+		is_a_habitable_planet_include_gaia = yes
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOT = {
+			is_shielded = yes
+		}
+	}
+}
+
+can_destroy_planet_with_MASS_FLOW_BEAM = {
+	custom_tooltip = {
+		fail_text = too_large_to_increase
+		planet_size < 50
+	}
+	custom_tooltip = {
+		fail_text = is_a_habitable_planet_or_habitat
+		is_a_habitable_planet_or_habitat = yes
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOT = {
+			is_shielded = yes
+		}
+	}
+}
+
+can_destroy_planet_with_MINERAL_DISCOVERY_BEAM = {
+	custom_tooltip = {
+		fail_text = is_a_habitable_planet_include_gaia
+		is_a_habitable_planet_include_gaia = yes
+	}
+	custom_tooltip = {
+		fail_text = terraform_first
+		NOT = {
+			has_modifier = terraforming_candidate
+		}
+	}
+	custom_tooltip = {
+		text = target_is_not_in_border
+		OR = {
+			NOT = { exists = space_owner }
+			AND = {
+				exists = space_owner
+				space_owner = {
+					OR = {
+						space_owner = { is_same_value = from.owner }
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # colony
+				exists = owner
+				owner = {
+					OR = {
+						space_owner = { is_same_value = from.owner }
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # primitive
+				exists = owner
+				owner = {
+					is_primitive = yes
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOT = {
+			is_shielded = yes
+		}
+	}
+}
+
+can_destroy_planet_with_FERTILIZER_BEAM = {
+	custom_tooltip = {
+		fail_text = is_a_habitable_planet_include_gaia
+		is_a_habitable_planet_include_gaia = yes
+	}
+	custom_tooltip = {
+		fail_text = terraform_first
+		NOT = {
+			has_modifier = terraforming_candidate
+		}
+	}
+	custom_tooltip = {
+		text = target_is_not_in_border
+		OR = {
+			NOT = { exists = space_owner }
+			AND = {
+				exists = space_owner
+				space_owner = {
+					OR = {
+						space_owner = { is_same_value = from.owner }
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # colony
+				exists = owner
+				owner = {
+					OR = {
+						space_owner = { is_same_value = from.owner }
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # primitive
+				exists = owner
+				owner = {
+					is_primitive = yes
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOT = {
+			is_shielded = yes
+		}
+	}
+}
+
+can_destroy_planet_with_SOLAR_ENERGY_BEAM = {
+	custom_tooltip = {
+		fail_text = is_a_habitable_planet_include_gaia
+		is_a_habitable_planet_include_gaia = yes
+	}
+	custom_tooltip = {
+		fail_text = terraform_first
+		NOT = {
+			has_modifier = terraforming_candidate
+		}
+	}
+	custom_tooltip = {
+		text = target_is_not_in_border
+		OR = {
+			NOT = { exists = space_owner }
+			AND = {
+				exists = space_owner
+				space_owner = {
+					OR = {
+						space_owner = { is_same_value = from.owner }
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # colony
+				exists = owner
+				owner = {
+					OR = {
+						space_owner = { is_same_value = from.owner }
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # primitive
+				exists = owner
+				owner = {
+					is_primitive = yes
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOT = {
+			is_shielded = yes
+		}
+	}
+}
+
+can_destroy_planet_with_SCIENTIFIC_BEAM = {
+	custom_tooltip = {
+		fail_text = target_should_not_be_habitat
+		NOT = {
+			is_planet_class = pc_habitat
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_a_habitable_planet_megastructure_not_habitat
+		is_a_habitable_planet_megastructure_not_habitat = yes
+	}
+	custom_tooltip = {
+		text = target_is_not_in_border
+		OR = {
+			NOT = { exists = space_owner }
+			AND = {
+				exists = space_owner
+				space_owner = {
+					OR = {
+						space_owner = { is_same_value = from.owner }
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # colony
+				exists = owner
+				owner = {
+					OR = {
+						space_owner = { is_same_value = from.owner }
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # primitive
+				exists = owner
+				owner = {
+					is_primitive = yes
+				}
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = is_shielded
+		NOT = {
+			is_shielded = yes
+		}
+	}
+}
+
+can_destroy_planet_with_THE_ALMIGHTY = {
+	is_star = yes
+	custom_tooltip = {
+		fail_text = system_not_has_sapped
+		NOT = {
+			has_planet_flag = has_sapped
+		}
+	}
+	custom_tooltip = {
+		text = is_not_hostile_or_non_habbitables
+		OR = {
+			AND = {
+				OR = {
+					AND = {
+						exists = space_owner
+						space_owner = { is_same_value = from.owner }
+					}
+					NOT = { exists = space_owner }
+				}
+				NOT = { solar_system = { any_system_planet = { colonizeable_planet = yes } } }
+			}
+			AND = {
+				exists = space_owner
+				space_owner = {
+					OR = {
+						is_at_war_with = from.owner
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # colony
+				exists = owner
+				owner = {
+					OR = {
+						is_at_war_with = from.owner
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+			AND = { # primitive
+				exists = space_owner
+				exists = owner
+				owner = {
+					is_primitive = yes
+				}
+				space_owner = {
+					OR = {
+						is_at_war_with = from.owner
+						is_country_type = swarm
+						is_country_type = extradimensional
+						is_country_type = extradimensional_2
+						is_country_type = extradimensional_3
+						is_country_type = ai_empire
+					}
+				}
+			}
+		}
+	}
+}
+
+can_destroy_planet_with_THE_MCV = {
+	custom_tooltip = {
+		fail_text = "requires_inside_border"
+		is_inside_border = from
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_existing_megastructure"
+		AND = {
+			has_no_non_gate_megastructure = yes
+			NOT = { solar_system = { any_system_planet = { has_planet_flag = has_megastructure }}}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_survey_not_habitable"
+		is_surveyed = {			# prevent leaking habitability information
+			who = prev.from
+			status = yes
+		}
+		colonizable_planet = no
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_anomaly"
+		NOT = { has_anomaly = yes }
+	}
+	custom_tooltip = {
+		fail_text = "requires_not_minor_planetary_body"
+		NOR = {
+			is_asteroid = yes
+			is_moon = yes
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_no_binary_trinary"
+		AND = {
+			is_star = yes
+			NOR = {
+				is_star_class = sc_binary_1
+				is_star_class = sc_binary_2
+				is_star_class = sc_binary_3
+				is_star_class = sc_binary_4
+				is_star_class = sc_binary_5
+				is_star_class = sc_binary_6
+				is_star_class = sc_binary_7
+				is_star_class = sc_binary_8
+				is_star_class = sc_binary_9
+				is_star_class = sc_binary_10
+				is_star_class = sc_trinary_1
+				is_star_class = sc_trinary_2
+				is_star_class = sc_trinary_3
+				is_star_class = sc_trinary_4
+			}
+		}
+	}
+	custom_tooltip = {
+		fail_text = "requires_not_ring_world"
+		is_ringworld = no
+	}
+}

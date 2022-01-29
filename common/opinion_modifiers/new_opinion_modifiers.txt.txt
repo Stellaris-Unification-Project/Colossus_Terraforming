@@ -1,0 +1,28 @@
+
+opinion_destroy_a_system = {
+	opinion = {
+		base = -1000
+	}
+
+	accumulative = yes
+	
+	min = -8000
+
+	decay = {
+		base = 1
+	}
+}
+
+opinion_destroy_other_system = {
+	opinion = {
+		base = -100
+	}
+
+	accumulative = yes
+	
+	min = -1000
+
+	decay = {
+		base = 1
+	}
+}

@@ -1,0 +1,179 @@
+weapon_component_template = { # Gaia Beam
+	key = "GAIA_BEAM"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_pk_gaia_beam" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_gaia_beam
+	icon_frame = 1
+
+	component_set = "GAIA_BEAM"
+
+	planet_destruction_gfx = "gaia_planet_gfx"
+}
+
+weapon_component_template = { # Machine Beam
+	key = "MACHINE_BEAM"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_pk_machine_beam" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_machine_beam
+	icon_frame = 1
+
+	component_set = "MACHINE_BEAM"
+
+	planet_destruction_gfx = "machine_planet_gfx"
+}
+
+weapon_component_template = { # Mass Flow Beam
+	key = "MASS_FLOW_BEAM"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_pk_mass_flow_beam" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_mass_flow_beam
+	icon_frame = 1
+
+	component_set = "MASS_FLOW_BEAM"
+
+	planet_destruction_gfx = "mass_flow_gfx"
+}
+
+weapon_component_template = { # Mineral Discovery Beam
+	key = "MINERAL_DISCOVERY_BEAM"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_planetary_beam" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_mineral_discovery_beam
+	icon_frame = 1
+
+	component_set = "MINERAL_DISCOVERY_BEAM"
+
+	planet_destruction_gfx = "shatter_planet_gfx"
+}
+
+weapon_component_template = { # Fertilizer Beam
+	key = "FERTILIZER_BEAM"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_planetary_beam" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_fertilizer
+	icon_frame = 1
+
+	component_set = "FERTILIZER_BEAM"
+
+	planet_destruction_gfx = "shatter_planet_gfx"
+}
+
+weapon_component_template = { # Solar Energy
+	key = "SOLAR_ENERGY_BEAM"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_planetary_beam" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_solar_energy
+	icon_frame = 1
+
+	component_set = "SOLAR_ENERGY_BEAM"
+
+	planet_destruction_gfx = "shatter_planet_gfx"
+}
+
+weapon_component_template = { # EXCRETE CREEP
+	key = "EXCRETE_CREEP"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_pk_excrete_creep" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_excrete_creep
+	icon_frame = 1
+
+	component_set = "EXCRETE_CREEP"
+
+	planet_destruction_gfx = "excrete_creep_planet_gfx"
+}
+
+weapon_component_template = { # The Almighty
+	key = "THE_ALMIGHTY"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_pk_the_almighty" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_the_almighty
+	icon_frame = 1
+
+	component_set = "THE_ALMIGHTY"
+
+	planet_destruction_gfx = "the_almighty_gfx"
+}
+
+weapon_component_template = { # Mobile Construction Vehicle
+	key = "THE_MCV"
+	size = planet_killer
+	power = -7500
+	entity = "invisible_turret_entity"
+	type = planet_killer
+	static_rotation = yes
+	use_ship_kill_target = no
+	prerequisites = { "tech_pk_mcv" }
+	
+	windup = { min = 90.0 max = 0.0 }
+	total_fire_time = 30
+	icon = GFX_ship_part_MCV
+	icon_frame = 1
+
+	component_set = "THE_MCV"
+
+	planet_destruction_gfx = "mass_flow_gfx"
+}

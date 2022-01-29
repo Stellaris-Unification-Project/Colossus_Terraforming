@@ -1,0 +1,38 @@
+spriteTypes{
+	spriteType = {
+		name = "GFX_ship_part_gaia_beam"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_gaia_beam.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_machine_beam"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_machine_beam.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_mass_flow_beam"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_mass_flow_beam.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_mineral_discovery_beam"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_mineral_discovery_beam.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_fertilizer"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_fertilizer.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_solar_energy"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_solar_energy.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_excrete_creep"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_excrete_creep.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_the_almighty"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_the_almighty.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_MCV"
+		texturefile = "gfx/interface/icons/ship_parts/ship_part_mcv.dds"
+	}
+}

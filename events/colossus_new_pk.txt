@@ -1,0 +1,2587 @@
+namespace = new_pk
+
+# gaia beam
+planet_event = {
+	id = new_pk.100
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Contingency Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+			set_owner = from.owner
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2046 }
+			set_owner = from.owner
+		}
+
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1 
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1 
+				}
+			}
+			set_owner = from.owner
+		}
+		if = {
+			limit = { 
+				is_planet_class = pc_ringworld_habitable_damaged
+			}
+			change_pc = pc_ringworld_habitable
+			from.owner = {
+				country_event = { id = new_pk.102 }
+			}
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_ringworld_tech_damaged
+			}
+			change_pc = pc_ringworld_tech
+			from.owner = {
+				country_event = { id = new_pk.103 }
+			}
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_ringworld_seam_damaged
+			}
+			change_pc = pc_ringworld_seam
+			from.owner = {
+				country_event = { id = new_pk.103 }
+			}
+		}
+		else_if = {
+			limit = {
+				is_planet_class = pc_black_hole
+			}
+			solar_system = {
+				every_system_planet = {
+					if = {
+						limit = { 
+							is_planet_class = pc_ringworld_habitable_damaged
+						}
+						change_pc = pc_ringworld_habitable
+					}
+					else_if = {
+						limit = {
+							is_planet_class = pc_ringworld_tech_damaged
+						}
+						change_pc = pc_ringworld_tech
+					}
+					else_if = {
+						limit = {
+							is_planet_class = pc_ringworld_seam_damaged
+						}
+						change_pc = pc_ringworld_seam
+					}
+					else_if = {
+						limit = {
+							is_planet_class = pc_black_hole
+						}
+						random_list = {
+							50 = { change_pc = pc_b_star }
+							50 = { change_pc = pc_a_star }
+							50 = { change_pc = pc_f_star }
+							50 = { change_pc = pc_g_star }
+							50 = { change_pc = pc_k_star }
+							50 = { change_pc = pc_m_star }
+							50 = { change_pc = pc_m_giant_star }
+							50 = { change_pc = pc_t_star }
+							50 = { change_pc = pc_neutron_star }
+							50 = { change_pc = pc_pulsar }
+						}
+					}
+					else_if = {
+						limit = {
+							OR = {
+								is_planet_class = pc_shrouded
+								is_planet_class = pc_broken
+								is_planet_class = pc_shattered
+								is_planet_class = pc_shattered_2
+								is_planet_class = pc_egg_cracked
+							}
+						}
+						random_list = {
+							50 = { change_pc = pc_barren }
+							50 = { change_pc = pc_barren_cold }
+						}
+						reset_planet = yes
+						add_modifier = {
+							modifier = "terraforming_candidate"
+							days = -1
+						}
+					}
+				}
+				random_list = {
+					50 = { set_star_class = sc_b }
+					50 = { set_star_class = sc_a }
+					50 = { set_star_class = sc_f }
+					50 = { set_star_class = sc_g }
+					50 = { set_star_class = sc_k }
+					50 = { set_star_class = sc_m }
+					50 = { set_star_class = sc_m_giant }
+					50 = { set_star_class = sc_t }
+					50 = { set_star_class = sc_neutron_star }
+					50 = { set_star_class = sc_pulsar }
+				}
+			}
+			from.owner = {
+				country_event = { id = new_pk.105 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_planet_class = pc_shrouded
+					is_planet_class = pc_broken
+					is_planet_class = pc_shattered
+					is_planet_class = pc_shattered_2
+					is_planet_class = pc_egg_cracked
+				}
+			}
+			remove_modifier = doomsday_5
+			random_list = {
+				50 = { change_pc = pc_barren }
+				50 = { change_pc = pc_barren_cold }
+			}
+			reset_planet = yes
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+			from.owner = {
+				country_event = { id = new_pk.104 }
+			}
+		}
+		else = {
+			from.owner = {
+				country_event = { id = new_pk.101 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.101
+	title = new_pk.101.name
+	desc = new_pk.101.desc
+	picture = GFX_evt_planet_beam
+	show_sound = planet_killer_fire_01
+	location = from
+	
+
+	is_triggered_only = yes
+
+	option = {
+		name = new_pk.pc_gaia.name
+		custom_tooltip = new_pk.pc_gaia.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_gaia
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_gaia
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_tundra.name
+		custom_tooltip = new_pk.pc_tundra.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_tundra
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_tundra
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_arctic.name
+		custom_tooltip = new_pk.pc_arctic.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_arctic
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_arctic
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_alpine.name
+		custom_tooltip = new_pk.pc_alpine.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_alpine
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_alpine
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_ocean.name
+		custom_tooltip = new_pk.pc_ocean.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_ocean
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_ocean
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_continental.name
+		custom_tooltip = new_pk.pc_continental.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_continental
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_continental
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_tropical.name
+		custom_tooltip = new_pk.pc_tropical.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_tropical
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_tropical
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_desert.name
+		custom_tooltip = new_pk.pc_desert.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_desert
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_desert
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_arid.name
+		custom_tooltip = new_pk.pc_arid.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_arid
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_arid
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_savannah.name
+		custom_tooltip = new_pk.pc_savannah.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_savannah
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_savannah
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_nuked.name
+		custom_tooltip = new_pk.pc_nuked.desc
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_nuked
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_nuked
+				}
+			}
+		}
+	}
+	option = {
+		name = new_pk.pc_city.name
+		custom_tooltip = new_pk.pc_city.desc
+		trigger = {
+			has_ascension_perk = ap_arcology_project
+		}
+		hidden_effect = {
+			from = {
+				if ={
+					limit = {
+						OR= {
+							has_modifier = terraforming_candidate
+							is_unhabitable_terrestrial = yes
+						}
+					}
+					remove_modifier = terraforming_candidate
+					change_pc = pc_city
+					reroll_deposits = yes
+					clear_blockers = yes
+				}
+				else = {
+					change_pc = pc_city
+				}
+			}
+		}
+	}
+}
+
+# repaired ringworld
+country_event = {
+	id = new_pk.102
+	title = utopia.2017.name
+	desc = utopia.2017.desc
+	picture = GFX_evt_ringworld
+	show_sound = event_ringworld_build_complete
+	location = from
+	
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# repaired ringworld seam/tech
+country_event = {
+	id = new_pk.103
+	title = utopia.2017.name
+	desc = new_pk.103.desc
+	picture = GFX_evt_ringworld
+	show_sound = event_ringworld_build_upgrade
+	location = from
+	
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# repaired ruins
+country_event = {
+	id = new_pk.104
+	title = new_pk.104.name
+	desc = new_pk.104.desc
+	picture = GFX_evt_drilling_for_gas
+	show_sound = event_mega_structure_other_empire_build_start
+	location = from
+	
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# repaired system
+country_event = {
+	id = new_pk.105
+	title = new_pk.105.name
+	desc = new_pk.105.desc
+	picture = GFX_evt_drilling_for_gas
+	show_sound = event_mega_structure_other_empire_build_start
+	location = from
+	
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# machine beam
+planet_event = {
+	id = new_pk.200
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Contingency Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2046 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1 
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1 
+				}
+			}
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		change_pc = pc_machine
+		if ={
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+			reroll_deposits = yes
+			clear_blockers = yes
+		}
+		from.owner = {
+			country_event = { id = new_pk.201 }
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.201
+	title = new_pk.201.name
+	desc = new_pk.201.desc
+	picture = GFX_evt_planet_beam
+	show_sound = event_solar_fusion
+	location = from
+	
+
+	is_triggered_only = yes
+
+	option = {
+		name = new_pk.201.tooltip
+	}
+}
+
+# mass flow beam
+planet_event = {
+	id = new_pk.300
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Contingency Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2046 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1 
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1 
+				}
+			}
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		switch = {
+			trigger = planet_size
+			43 < { change_planet_size = 6 add_planet_devastation = 30 } # less than or equal to 44
+			44 < { change_planet_size = 5 add_planet_devastation = 25 } # 45
+			45 < { change_planet_size = 4 add_planet_devastation = 20 } # 46
+			46 < { change_planet_size = 3 add_planet_devastation = 15 } # 47
+			47 < { change_planet_size = 2 add_planet_devastation = 10 } # 48
+			48 < { change_planet_size = 1 add_planet_devastation = 5 } # 49
+		}
+		#if = {
+		#	limit = {
+		#		planet_size <= 44
+		#	}
+		#	hidden_effect = { change_planet_size = 6 }
+		#}
+		#else_if = {
+		#	limit = {
+		#		planet_size = 45
+		#	}
+		#	hidden_effect = { change_planet_size = 5 }
+		#}
+		#else_if = {
+		#	limit = {
+		#		planet_size = 46
+		#	}
+		#	hidden_effect = { change_planet_size = 4 }
+		#}
+		#else_if = {
+		#	limit = {
+		#		planet_size = 47
+		#	}
+		#	hidden_effect = { change_planet_size = 3 }
+		#}
+		#else_if = {
+		#	limit = {
+		#		planet_size = 48
+		#	}
+		#	hidden_effect = { change_planet_size = 2 }
+		#}
+		#else = {
+		#	hidden_effect = { change_planet_size = 1 }
+		#}
+		from.owner = {
+			country_event = { id = new_pk.301 }
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.301
+	title = new_pk.301.name
+	desc = new_pk.301.desc
+	picture = GFX_evt_planet_beam
+	show_sound = planet_killer_fire_01
+	location = from
+	
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+# mineral discovery beam
+planet_event = {
+	id = new_pk.400
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Contingency Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2046 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1 
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1 
+				}
+			}
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		random_list = {
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_alpine
+							is_planet_class = pc_arctic
+							is_planet_class = pc_arid
+							is_planet_class = pc_continental
+							is_planet_class = pc_nuked
+						}
+					}
+				}
+				add_deposit = d_veiny_cliffs
+				add_deposit = d_veiny_cliffs
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_tropical
+							is_planet_class = pc_savannah
+							is_planet_class = pc_desert
+							is_planet_class = pc_ocean
+							is_planet_class = pc_tundra
+						}
+					}
+				}
+				add_deposit = d_mineral_fields
+				add_deposit = d_mineral_fields
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_continental
+							is_planet_class = pc_tropical
+							is_planet_class = pc_savannah
+							is_planet_class = pc_desert
+							is_planet_class = pc_gaia
+						}
+					}
+				}
+				add_deposit = d_prosperous_mesa
+				add_deposit = d_prosperous_mesa
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_ocean
+							is_planet_class = pc_alpine
+							is_planet_class = pc_arctic
+							is_planet_class = pc_arid
+							is_planet_class = pc_tundra
+							is_planet_class = pc_nuked
+							is_planet_class = pc_gaia
+						}
+					}
+				}
+				add_deposit = d_ore_rich_caverns
+				add_deposit = d_ore_rich_caverns
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_continental
+							is_planet_class = pc_desert
+							is_planet_class = pc_alpine
+							is_planet_class = pc_arctic
+							is_planet_class = pc_arid
+							is_planet_class = pc_tundra
+							is_planet_class = pc_gaia
+						}
+					}
+				}
+				add_deposit = d_rich_mountain
+				add_deposit = d_rich_mountain
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_continental
+							is_planet_class = pc_desert
+							is_planet_class = pc_alpine
+							is_planet_class = pc_arctic
+							is_planet_class = pc_arid
+							is_planet_class = pc_tundra
+							is_planet_class = pc_gaia
+						}
+					}
+				}
+				add_deposit = d_submerged_ore_veins
+				add_deposit = d_submerged_ore_veins
+			}
+		}
+		from.owner = {
+			country_event = { id = new_pk.401 }
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.401
+	title = new_pk.401.name
+	desc = new_pk.401.desc
+	picture = GFX_evt_planet_beam
+	show_sound = event_solar_fusion
+	location = from
+	
+
+	is_triggered_only = yes
+
+	option = {
+		name = new_pk.401.tooltip
+	}
+}
+
+## Scientific Beam
+#planet_event = {
+#	id = new_pk.500
+#	hide_window = yes
+#
+#	is_triggered_only = yes
+#
+#	immediate = {
+#		# Contingency Machine World
+#		if = {
+#			limit = { 
+#				is_planet_class = pc_ai 
+#				NOT = { has_planet_flag = machine_lair }
+#			}
+#			set_planet_flag = destroyed_by_colossus
+#			set_planet_flag = planet_cracked
+#			planet_event = { id = crisis.2040 }
+#		}
+#
+#		# Contingency Final Machine World
+#		if = {
+#			limit = { 
+#				is_planet_class = pc_ai 
+#				has_planet_flag = machine_lair
+#			}
+#			set_planet_flag = destroyed_by_colossus
+#			set_planet_flag = planet_cracked
+#			from.owner = { save_event_target_as = final_machine_world_destroyer }
+#			planet_event = { id = crisis.2046 }
+#		}
+#		# Swarm Situation Log counter
+#		if = {
+#			limit = {
+#				owner = { is_country_type = swarm }
+#			}
+#			every_country = {
+#				limit = { has_event_chain = "prethoryn_scourge_chain" }
+#				add_event_chain_counter = {
+#					event_chain = "prethoryn_scourge_chain"
+#					counter = "infested_worlds"
+#					amount = -1 
+#				}
+#				add_event_chain_counter = {
+#					event_chain = "prethoryn_scourge_chain"
+#					counter = "infested_worlds_cleansed"
+#					amount = 1 
+#				}
+#			}
+#		}
+#		if = {
+#			limit = {
+#				OR = {
+#					is_planet_class = pc_ringworld_habitable
+#					is_planet_class = pc_ringworld_machine
+#				}
+#			}
+#			every_tile = {
+#				set_deposit = d_immense_physics_deposit
+#				add_deposit = d_immense_society_deposit
+#				add_deposit = d_immense_engineering_deposit
+#			}
+#			else = {
+#				every_tile = {
+#					random_list = {
+#						1 = {
+#							set_deposit = d_immense_physics_deposit
+#						}
+#						1 = {
+#							set_deposit = d_immense_society_deposit
+#						}
+#						1 = {
+#							set_deposit = d_immense_engineering_deposit
+#						}
+#					}
+#				}
+#			}
+#		}
+#		from.owner = {
+#			country_event = { id = new_pk.501 }
+#		}
+#	}
+#}
+
+#country_event = {
+#	id = new_pk.501
+#	title = new_pk.501.name
+#	desc = new_pk.501.desc
+#	picture = GFX_evt_planet_beam
+#	show_sound = event_solar_fusion
+#	location = from
+#	
+#
+#	is_triggered_only = yes
+#
+#	option = {
+#		name = OK
+#		custom_tooltip = new_pk.501.tooltip
+#	}
+#}
+
+# EXCRETE CREEP
+planet_event = {
+	id = new_pk.600
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Contingency Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+			set_owner = from.owner
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2046 }
+			set_owner = from.owner
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1 
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1 
+				}
+			}
+			set_owner = from.owner
+		}
+		change_pc = pc_hive
+		if ={
+			limit = {
+				has_modifier = terraforming_candidate
+			}
+			remove_modifier = terraforming_candidate
+			reroll_deposits = yes
+			clear_blockers = yes
+		}
+		from.owner = {
+			country_event = { id = new_pk.601 }
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.601
+	title = new_pk.601.name
+	desc = new_pk.601.desc
+	picture = GFX_evt_planet_beam
+	show_sound = event_solar_fusion
+	location = from
+	
+	is_triggered_only = yes
+
+	option = {
+		name = new_pk.601.tooltip
+	}
+}
+
+# The Almighty
+planet_event = {
+	id = new_pk.700
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_system_planet = {
+			# Contingency Machine World
+			if = {
+				limit = { 
+					is_planet_class = pc_ai 
+					NOT = { has_planet_flag = machine_lair }
+				}
+				set_planet_flag = destroyed_by_colossus
+				set_planet_flag = planet_cracked
+				planet_event = { id = crisis.2040 }
+				set_owner = from.owner
+				change_pc = pc_gray_goo
+				add_modifier = {
+					modifier = "terraforming_candidate"
+					days = -1
+				}
+			}
+
+			# Contingency Final Machine World
+			if = {
+				limit = { 
+					is_planet_class = pc_ai 
+					has_planet_flag = machine_lair
+				}
+				set_planet_flag = destroyed_by_colossus
+				set_planet_flag = planet_cracked
+				from.owner = { save_event_target_as = final_machine_world_destroyer }
+				planet_event = { id = crisis.2046 }
+				set_owner = from.owner
+				change_pc = pc_gray_goo
+				add_modifier = {
+					modifier = "terraforming_candidate"
+					days = -1
+				}
+			}
+			# Swarm Situation Log counter
+			if = {
+				limit = {
+					owner = { is_country_type = swarm }
+				}
+				every_country = {
+					limit = { has_event_chain = "prethoryn_scourge_chain" }
+					add_event_chain_counter = {
+						event_chain = "prethoryn_scourge_chain"
+						counter = "infested_worlds"
+						amount = -1 
+					}
+					add_event_chain_counter = {
+						event_chain = "prethoryn_scourge_chain"
+						counter = "infested_worlds_cleansed"
+						amount = 1 
+					}
+				}
+				set_owner = from.owner
+				change_pc = pc_gray_goo
+				add_modifier = {
+					modifier = "terraforming_candidate"
+					days = -1
+				}
+			}
+		}
+		
+		#solar_system = {
+		#	every_owned_ship = {
+		#		limit = {
+		#			OR = {
+		#		 		is_ship_size = mining_station
+		#		 		is_ship_size = research_station
+		#		 	}
+		#		}
+		#		fleet = { destroy_fleet = this }
+		#	}
+		#}
+		
+		solar_system = {
+			every_system_planet = {
+				# Add war exhaustion to planet owner 
+				if = {
+					limit = {
+						exists = owner
+					}
+					owner = {
+						add_static_war_exhaustion = {
+							attacker = from.fleet.owner
+							location = root
+							value_for_planet_destruction = 1.0
+						}
+						add_opinion_modifier = {
+							modifier = opinion_cracked_my_world
+							who = from.owner
+						}
+					}
+				}
+
+				every_owned_pop = {
+					kill_pop = yes
+				}
+				remove_all_buildings = yes
+
+				if = {
+					limit = {
+						is_planet_class = pc_habitat
+					}
+					spawn_habitat_cracker_effect = yes
+					remove_planet = yes
+				}
+				else_if = {
+					limit = {
+						is_planet_class = pc_ringworld_habitable
+					}
+					spawn_ringworld_cracker_effect = yes
+					change_pc = pc_ringworld_habitable_damaged
+				}
+				else_if = {
+					limit = {
+						is_planet_class = pc_ringworld_seam
+					}
+					spawn_ringworld_cracker_effect = yes
+					change_pc = pc_ringworld_seam_damaged
+				}
+				else_if = {
+					limit = {
+						is_planet_class = pc_ringworld_tech
+					}
+					spawn_ringworld_cracker_effect = yes
+					change_pc = pc_ringworld_tech_damaged
+				}
+				else_if = {
+					limit = {
+						is_star = yes
+					}
+					set_planet_flag = has_sapped
+					change_pc = pc_black_hole
+					clear_deposits = yes
+					add_deposit = d_energy_10
+				}
+				else_if = {
+					limit = {
+						NOR = {
+							is_planet_class = pc_asteroid
+							is_planet_class = pc_ice_asteroid
+						}
+					}
+					change_pc = pc_shattered
+					clear_deposits = yes
+					random_list = {
+						1 = {
+							add_deposit = d_minerals_4
+							add_deposit = d_minerals_4
+							add_deposit = d_minerals_4
+							add_deposit = d_minerals_4
+						}
+						1 = {
+							add_deposit = d_minerals_4
+							add_deposit = d_minerals_4
+							add_deposit = d_minerals_4
+						}
+						1 = {
+							add_deposit = d_minerals_4
+							add_deposit = d_minerals_4
+						}
+						1 = {
+							add_deposit = d_minerals_4
+						}
+					}
+				}
+			}
+			starbase = { 
+				limit = {
+					owner = { is_same_value = from.owner }
+				}
+				fleet = { destroy_fleet = this } 
+			}
+		}
+		from.owner = {
+			switch = {
+				trigger = galaxy_size
+				huge = { add_resource = { sr_dark_matter = 1000 } }
+				large = { add_resource = { sr_dark_matter = 1500 } }
+				medium = { add_resource = { sr_dark_matter = 2000 } }
+				small = { add_resource = { sr_dark_matter = 2500 } }
+				tiny = { add_resource = { sr_dark_matter = 3000 } }
+			}
+			country_event = { id = new_pk.701 }
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.701
+	title = new_pk.701.name
+	desc = new_pk.701.desc
+	picture = GFX_evt_exploding_planet
+	show_sound = event_solar_fusion
+	location = from
+	
+	is_triggered_only = yes
+
+	option = {
+		name = new_pk.701.tooltip
+	}
+}
+
+# Fertilizer Beam
+planet_event = {
+	id = new_pk.800
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Contingency Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2046 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1 
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1 
+				}
+			}
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		random_list = {
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_nuked
+							is_planet_class = pc_arctic
+						}
+					}
+				}
+				add_deposit = d_lichen_fields
+				add_deposit = d_lichen_fields
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_arid
+							is_planet_class = pc_savannah
+						}
+					}
+				}
+				add_deposit = d_bountiful_plains
+				add_deposit = d_bountiful_plains
+			}
+			1 = {
+				if = {
+					limit = {
+						is_planet_class = pc_continental
+					}
+				}
+				add_deposit = d_rugged_woods
+				add_deposit = d_rugged_woods
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_ocean
+							is_planet_class = pc_tropical
+						}
+					}
+				}
+				add_deposit = d_green_hills
+				add_deposit = d_green_hills
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_alpine
+							is_planet_class = pc_tundra
+						}
+					}
+				}
+				add_deposit = d_forgiving_tundra
+				add_deposit = d_forgiving_tundra
+			}
+			1 = {
+				if = {
+					limit = {
+						is_planet_class = pc_ocean
+					}
+				}
+				add_deposit = d_boggy_fens
+				add_deposit = d_boggy_fens
+			}
+			1 = {
+				if = {
+					limit = {
+						is_planet_class = pc_desert
+					}
+				}
+				add_deposit = d_nutritious_mudland
+				add_deposit = d_nutritious_mudland
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_nuked
+							is_cold = yes
+						}
+					}
+				}
+				add_deposit = d_fungal_caves
+				add_deposit = d_fungal_caves
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_gaia
+							is_planet_class = pc_tropical
+							is_planet_class = pc_ocean
+						}
+					}
+				}
+				add_deposit = d_lush_jungle
+				add_deposit = d_lush_jungle
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_savannah
+							is_planet_class = pc_continental
+							is_planet_class = pc_gaia
+							is_planet_class = pc_arid
+						}
+					}
+				}
+				add_deposit = d_fertile_lands
+				add_deposit = d_fertile_lands
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_arid
+							is_planet_class = pc_desert
+						}
+					}
+				}
+				add_deposit = d_great_river
+				add_deposit = d_great_river
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_continental
+							is_planet_class = pc_savannah
+							is_planet_class = pc_gaia
+						}
+					}
+				}
+				add_deposit = d_black_soil
+				add_deposit = d_black_soil
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_gaia
+							is_planet_class = pc_ocean
+						}
+					}
+				}
+				add_deposit = d_teeming_reef
+				add_deposit = d_teeming_reef
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_arid
+							is_planet_class = pc_desert
+						}
+					}
+				}
+				add_deposit = d_marvelous_oasis
+				add_deposit = d_marvelous_oasis
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_arid
+							is_planet_class = pc_desert
+							is_planet_class = pc_tropical
+						}
+					}
+				}
+				add_deposit = d_tropical_island
+				add_deposit = d_tropical_island
+			}
+			1 = {
+				if = {
+					limit = {
+						is_cold = yes
+					}
+				}
+				add_deposit = d_fungal_forest
+				add_deposit = d_fungal_forest
+			}
+		}
+		from.owner = {
+			country_event = { id = new_pk.801 }
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.801
+	title = new_pk.801.name
+	desc = new_pk.801.desc
+	picture = GFX_evt_planet_beam
+	show_sound = event_solar_fusion
+	location = from
+	
+
+	is_triggered_only = yes
+
+	option = {
+		name = new_pk.801.tooltip
+	}
+}
+
+# Solar Energy Beam
+planet_event = {
+	id = new_pk.900
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		# Contingency Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				NOT = { has_planet_flag = machine_lair }
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			planet_event = { id = crisis.2040 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+
+		# Contingency Final Machine World
+		if = {
+			limit = { 
+				is_planet_class = pc_ai 
+				has_planet_flag = machine_lair
+			}
+			set_planet_flag = destroyed_by_colossus
+			set_planet_flag = planet_cracked
+			from.owner = { save_event_target_as = final_machine_world_destroyer }
+			planet_event = { id = crisis.2046 }
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		# Swarm Situation Log counter
+		if = {
+			limit = {
+				owner = { is_country_type = swarm }
+			}
+			every_country = {
+				limit = { has_event_chain = "prethoryn_scourge_chain" }
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds"
+					amount = -1 
+				}
+				add_event_chain_counter = {
+					event_chain = "prethoryn_scourge_chain"
+					counter = "infested_worlds_cleansed"
+					amount = 1 
+				}
+			}
+			set_owner = from.owner
+			change_pc = pc_gray_goo
+			add_modifier = {
+				modifier = "terraforming_candidate"
+				days = -1
+			}
+		}
+		random_list = {
+			1 = {
+				if = {
+					limit = {
+						is_dry = yes
+					}
+				}
+				add_deposit = d_arid_highlands
+				add_deposit = d_arid_highlands
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_cold = yes
+							is_wet = yes
+							is_planet_class = pc_nuked
+						}
+					}
+				}
+				add_deposit = d_hot_springs
+				add_deposit = d_hot_springs
+			}
+			1 = {
+				if = {
+					limit = {
+						is_wet = yes
+					}
+				}
+				add_deposit = d_rushing_waterfalls
+				add_deposit = d_rushing_waterfalls
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_gaia
+							is_planet_class = pc_nuked
+							is_planet_class = pc_relic
+							is_dry = yes
+						}
+					}
+				}
+				add_deposit = d_searing_desert
+				add_deposit = d_searing_desert
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_gaia
+							is_planet_class = pc_relic
+							is_cold = yes
+						}
+					}
+				}
+				add_deposit = d_frozen_gas_lake
+				add_deposit = d_frozen_gas_lake
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_arctic
+							is_planet_class = pc_tundra
+							is_planet_class = pc_savannah
+							is_planet_class = pc_desert
+							is_planet_class = pc_arid
+						}
+					}
+				}
+				add_deposit = d_geothermal_vent
+				add_deposit = d_geothermal_vent
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_gaia
+							is_planet_class = pc_relic
+							is_planet_class = pc_ocean
+							is_planet_class = pc_nuked
+						}
+					}
+				}
+				add_deposit = d_underwater_vent
+				add_deposit = d_underwater_vent
+			}
+			1 = {
+				if = {
+					limit = {
+						OR = {
+							is_planet_class = pc_tropical
+							is_planet_class = pc_alpine
+							is_planet_class = pc_gaia
+							is_planet_class = pc_relic
+							is_planet_class = pc_continental
+						}
+					}
+				}
+				add_deposit = d_tempestous_mountain
+				add_deposit = d_tempestous_mountain
+			}
+		}
+		from.owner = {
+			country_event = { id = new_pk.901 }
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.901
+	title = new_pk.901.name
+	desc = new_pk.901.desc
+	picture = GFX_evt_planet_beam
+	show_sound = event_solar_fusion
+	location = from
+	
+
+	is_triggered_only = yes
+
+	option = {
+		name = new_pk.901.tooltip
+	}
+}
+
+# The Mobile Construction Vehicle
+planet_event = {
+	id = new_pk.1000
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		every_system_planet = {
+			# Contingency Machine World
+			if = {
+				limit = { 
+					is_planet_class = pc_ai 
+					NOT = { has_planet_flag = machine_lair }
+				}
+				set_planet_flag = destroyed_by_colossus
+				set_planet_flag = planet_cracked
+				planet_event = { id = crisis.2040 }
+				set_owner = from.owner
+				change_pc = pc_gray_goo
+				add_modifier = {
+					modifier = "terraforming_candidate"
+					days = -1
+				}
+			}
+
+			# Contingency Final Machine World
+			if = {
+				limit = { 
+					is_planet_class = pc_ai 
+					has_planet_flag = machine_lair
+				}
+				set_planet_flag = destroyed_by_colossus
+				set_planet_flag = planet_cracked
+				from.owner = { save_event_target_as = final_machine_world_destroyer }
+				planet_event = { id = crisis.2046 }
+				set_owner = from.owner
+				change_pc = pc_gray_goo
+				add_modifier = {
+					modifier = "terraforming_candidate"
+					days = -1
+				}
+			}
+			# Swarm Situation Log counter
+			if = {
+				limit = {
+					owner = { is_country_type = swarm }
+				}
+				every_country = {
+					limit = { has_event_chain = "prethoryn_scourge_chain" }
+					add_event_chain_counter = {
+						event_chain = "prethoryn_scourge_chain"
+						counter = "infested_worlds"
+						amount = -1 
+					}
+					add_event_chain_counter = {
+						event_chain = "prethoryn_scourge_chain"
+						counter = "infested_worlds_cleansed"
+						amount = 1 
+					}
+				}
+				set_owner = from.owner
+				change_pc = pc_gray_goo
+				add_modifier = {
+					modifier = "terraforming_candidate"
+					days = -1
+				}
+			}
+		}
+
+		from.owner = {
+			country_event = { id = new_pk.1001 }
+		}
+	}
+}
+
+country_event = {
+	id = new_pk.1001
+	title = new_pk.1001.name
+	desc = new_pk.1001.desc
+	picture = GFX_evt_megastructure_construction
+	show_sound = event_radio_chatter
+	location = from
+
+	is_triggered_only = yes
+
+	option = {
+		name = new_pk.ring_world.name
+		custom_tooltip = new_pk.ring_world.desc
+		trigger = {
+			from = {
+				AND = {
+					is_star = yes
+					NOT = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_binary_1
+						is_star_class = sc_binary_2
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_4
+						is_star_class = sc_binary_5
+						is_star_class = sc_binary_6
+						is_star_class = sc_binary_7
+						is_star_class = sc_binary_8
+						is_star_class = sc_binary_9
+						is_star_class = sc_binary_10
+						is_star_class = sc_trinary_1
+						is_star_class = sc_trinary_2
+						is_star_class = sc_trinary_3
+						is_star_class = sc_trinary_4
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					every_system_planet = {
+						limit = { is_star = no }
+						remove_planet = yes
+					}
+					set_asteroid_belt = {
+						radius = 0
+					}
+					spawn_planet = {
+						class = "pc_ringworld_tech"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 330
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Ring_Section"
+							set_planet_entity = {
+								entity = "ringworld_tech_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_seam"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 300
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Ring_Section"
+							set_planet_entity = {
+								entity = "ringworld_seam_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_habitable"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 270
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Habitable_Section_A"
+							set_planet_entity = {
+								entity = "ringworld_habitable_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							clear_blockers = yes
+							save_event_target_as = ring_section
+							trigger_megastructure_icon = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_tech"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 240
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Ring_Section"
+							set_planet_entity = {
+								entity = "ringworld_tech_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_seam"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 210
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Ring_Section"
+							set_planet_entity = {
+								entity = "ringworld_seam_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_habitable"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 180
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Habitable_Section_B"
+							set_planet_entity = {
+								entity = "ringworld_habitable_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							clear_blockers = yes
+							save_event_target_as = ring_section
+							trigger_megastructure_icon = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_tech"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 150
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Ring_Section"
+							set_planet_entity = {
+								entity = "ringworld_tech_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_seam"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 120
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Ring_Section"
+							set_planet_entity = {
+								entity = "ringworld_seam_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_habitable"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 90
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Habitable_Section_C"
+							set_planet_entity = {
+								entity = "ringworld_habitable_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							clear_blockers = yes
+							save_event_target_as = ring_section
+							trigger_megastructure_icon = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_tech"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 60
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Ring_Section"
+							set_planet_entity = {
+								entity = "ringworld_tech_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_seam"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 30
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Ring_Section"
+							set_planet_entity = {
+								entity = "ringworld_seam_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							set_planet_flag = megastructure
+						}
+					}
+					spawn_planet = {
+						class = "pc_ringworld_habitable"
+						location = from
+						orbit_location = yes
+						orbit_angle_offset = 0
+						orbit_distance_offset = 45
+						init_effect = {
+							set_name = "NAME_Habitable_Section_D"
+							set_planet_entity = {
+								entity = "ringworld_habitable_entity_01_entity"
+								graphical_culture = this
+							}
+							set_surveyed = {
+								surveyed = yes
+								surveyor = FROM
+							}
+							set_all_comms_surveyed = yes
+							clear_blockers = yes
+							save_event_target_as = ring_section
+							trigger_megastructure_icon = yes
+							set_planet_flag = megastructure
+						}
+					}
+				}
+				set_star_flag = ring_world_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = utopia.2004 }
+			destroy_fleet = fromfrom
+		}
+	}
+
+	option = {
+		name = new_pk.matter_decompressor.name
+		custom_tooltip = new_pk.matter_decompressor.desc
+		trigger = {
+			from = {
+				is_planet_class = pc_black_hole
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					spawn_megastructure = {
+						type = "matter_decompressor_4"
+						planet = from
+						owner = this
+						graphical_culture = this
+					}
+				}
+				set_star_flag = matter_decompressor_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			set_country_flag = built_matter_decompressor_site
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = mega.9013 }
+			destroy_fleet = fromfrom
+		}
+	}
+
+	option = {
+		name = new_pk.mega_shipyard.name
+		custom_tooltip = new_pk.mega_shipyard.desc
+		trigger = {
+			from = {
+				AND = {
+					is_star = yes
+					NOT = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+						is_star_class = sc_binary_1
+						is_star_class = sc_binary_2
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_4
+						is_star_class = sc_binary_5
+						is_star_class = sc_binary_6
+						is_star_class = sc_binary_7
+						is_star_class = sc_binary_8
+						is_star_class = sc_binary_9
+						is_star_class = sc_binary_10
+						is_star_class = sc_trinary_1
+						is_star_class = sc_trinary_2
+						is_star_class = sc_trinary_3
+						is_star_class = sc_trinary_4
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					spawn_megastructure = {
+						type = "mega_shipyard_3"
+						planet = from
+						owner = this
+						graphical_culture = this
+					}
+				}
+				set_star_flag = mega_shipyard_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			set_country_flag = built_mega_shipyard_site
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = feda.3 }
+			destroy_fleet = fromfrom
+		}
+	}
+
+	option = {
+		name = new_pk.dyson_sphere.name
+		custom_tooltip = new_pk.dyson_sphere.desc
+		trigger = {
+			from = {
+				AND = {
+					is_star = yes
+					NOT = {
+						is_star_class = sc_black_hole
+						is_star_class = sc_neutron_star
+						is_star_class = sc_pulsar
+						is_star_class = sc_binary_1
+						is_star_class = sc_binary_2
+						is_star_class = sc_binary_3
+						is_star_class = sc_binary_4
+						is_star_class = sc_binary_5
+						is_star_class = sc_binary_6
+						is_star_class = sc_binary_7
+						is_star_class = sc_binary_8
+						is_star_class = sc_binary_9
+						is_star_class = sc_binary_10
+						is_star_class = sc_trinary_1
+						is_star_class = sc_trinary_2
+						is_star_class = sc_trinary_3
+						is_star_class = sc_trinary_4
+						any_system_planet = {
+							AND = {
+								colonizable_planet = yes
+							}
+						}
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					spawn_megastructure = {
+						type = "dyson_sphere_5"
+						planet = from
+						owner = this
+						graphical_culture = this
+					}
+				}
+				set_star_flag = dyson_sphere_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+				every_system_planet = {
+					limit = {
+						OR = {
+							is_planet_class = pc_molten
+							is_planet_class = pc_toxic
+						}
+					}
+					change_pc = pc_frozen
+				}
+				every_system_planet = {
+					limit = {
+						is_planet_class = pc_barren
+					}
+					change_pc = pc_barren_cold
+				}
+				every_system_planet = {
+					limit = {
+						has_modifier = terraforming_candidate
+					}
+					remove_modifier = terraforming_candidate
+				}
+			}
+			set_country_flag = built_dyson_sphere
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = utopia.4005 }
+			destroy_fleet = fromfrom
+		}
+	}
+
+	option = {
+		name = new_pk.spy_orb.name
+		custom_tooltip = new_pk.spy_orb.desc
+		trigger = {
+			from = {
+				AND = {
+					is_star = no
+					colonizable_planet = no
+					is_asteroid = no
+					is_moon = no
+					is_ringworld = no
+				}
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					spawn_megastructure = {
+						type = "spy_orb_4"
+						planet = from
+						owner = this
+						graphical_culture = this
+					}
+				}
+				set_star_flag = spy_orb_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			set_country_flag = built_spyorb
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = utopia.4104 }
+			destroy_fleet = fromfrom
+		}
+	}
+
+	option = {
+		name = new_pk.think_tank.name
+		custom_tooltip = new_pk.think_tank.desc
+		trigger = {
+			from = {
+				AND = {
+					is_star = no
+					colonizable_planet = no
+					is_asteroid = no
+					is_moon = no
+					is_ringworld = no
+				}
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					spawn_megastructure = {
+						type = "think_tank_4"
+						planet = from
+						owner = this
+						graphical_culture = this
+					}
+				}
+				set_star_flag = think_tank_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			set_country_flag = built_think_tank
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = utopia.84 }
+			destroy_fleet = fromfrom
+		}
+	}
+
+	option = {
+		name = new_pk.strategic_coordination_center.name
+		custom_tooltip = new_pk.strategic_coordination_center.desc
+		trigger = {
+			from = {
+				AND = {
+					is_star = no
+					colonizable_planet = no
+					is_asteroid = no
+					is_moon = no
+					is_ringworld = no
+				}
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					spawn_megastructure = {
+						type = "strategic_coordination_center_3"
+						planet = from
+						owner = this
+						graphical_culture = this
+					}
+				}
+				set_star_flag = strategic_coordination_center_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			set_country_flag = built_strategic_coordination_center_site
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = mega.9005 }
+			destroy_fleet = fromfrom
+		}
+	}
+
+	option = {
+		name = new_pk.mega_art_installation.name
+		custom_tooltip = new_pk.mega_art_installation.desc
+		trigger = {
+			from = {
+				AND = {
+					is_star = no
+					colonizable_planet = no
+					is_asteroid = no
+					is_moon = no
+					is_ringworld = no
+				}
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					spawn_megastructure = {
+						type = "mega_art_installation_4"
+						planet = from
+						owner = this
+						graphical_culture = this
+					}
+				}
+				set_star_flag = mega_art_installation_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			set_country_flag = built_mega_art_installation_site
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = ancrel.10030 }
+			destroy_fleet = fromfrom
+		}
+	}
+
+	option = {
+		name = new_pk.interstellar_assembly.name
+		custom_tooltip = new_pk.interstellar_assembly.desc
+		trigger = {
+			from = {
+				AND = {
+					is_star = no
+					colonizable_planet = no
+					is_asteroid = no
+					is_moon = no
+					is_ringworld = no
+				}
+			}
+		}
+		hidden_effect = {
+			from = {
+				solar_system = {
+					spawn_megastructure = {
+						type = "interstellar_assembly_4"
+						planet = from
+						owner = this
+						graphical_culture = this
+					}
+				}
+				set_star_flag = interstellar_assembly_built
+				set_planet_flag = has_megastructure
+				if = {
+					limit = { has_orbital_station = yes }
+					orbital_station = {
+						dismantle = yes
+					}
+				}
+			}
+			set_country_flag = built_interstellar_assembly_site
+			set_country_flag = has_built_or_repaired_megastructure
+			# country_event = { id = mega.9009 }
+			destroy_fleet = fromfrom
+		}
+	}
+}

@@ -1,0 +1,53 @@
+component_set = { # Gaia Beam
+	key = "GAIA_BEAM"
+	icon = "GFX_ship_part_gaia_beam"
+	icon_frame = 1
+}
+
+component_set = { # Machine Beam
+	key = "MACHINE_BEAM"
+	icon = "GFX_ship_part_machine_beam"
+	icon_frame = 1
+}
+
+component_set = { # Mass Flow Beam
+	key = "MASS_FLOW_BEAM"
+	icon = "GFX_ship_part_mass_flow_beam"
+	icon_frame = 1
+}
+
+component_set = { # Mineral Discovery Beam
+	key = "MINERAL_DISCOVERY_BEAM"
+	icon = "GFX_ship_part_mineral_discovery_beam"
+	icon_frame = 1
+}
+
+component_set = { # Fertilizer Beam
+	key = "FERTILIZER_BEAM"
+	icon = "GFX_ship_part_fertilizer"
+	icon_frame = 1
+}
+
+component_set = { # Mineral Solar Energy
+	key = "SOLAR_ENERGY_BEAM"
+	icon = "GFX_ship_part_solar_energy"
+	icon_frame = 1
+}
+
+component_set = { # EXCRETE CREEP
+	key = "EXCRETE_CREEP"
+	icon = "GFX_ship_part_excrete_creep"
+	icon_frame = 1
+}
+
+component_set = { # The Almighty
+	key = "THE_ALMIGHTY"
+	icon = "GFX_ship_part_the_almighty"
+	icon_frame = 1
+}
+
+component_set = { # Mobile Construction Vehicle
+	key = "THE_MCV"
+	icon = "GFX_ship_part_MCV"
+	icon_frame = 1
+}

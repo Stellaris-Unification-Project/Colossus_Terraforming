@@ -1,0 +1,61 @@
+on_destroy_planet_with_GAIA_BEAM = {
+	events = {
+		new_pk.100
+		planet_destruction.600
+	}
+}
+
+on_destroy_planet_with_MACHINE_BEAM = {
+	events = {
+		new_pk.200
+		planet_destruction.600
+	}
+}
+
+on_destroy_planet_with_MASS_FLOW_BEAM = {
+	events = {
+		new_pk.300
+	}
+}
+
+on_destroy_planet_with_MINERAL_DISCOVERY_BEAM = {
+	events = {
+		new_pk.400
+	}
+}
+
+on_destroy_planet_with_SCIENTIFIC_BEAM = {
+	events = {
+		new_pk.500
+	}
+}
+
+on_destroy_planet_with_EXCRETE_CREEP = {
+	events = {
+		new_pk.600
+	}
+}
+
+on_destroy_planet_with_THE_ALMIGHTY = {
+	events = {
+		new_pk.700
+	}
+}
+
+on_destroy_planet_with_FERTILIZER_BEAM = {
+	events = {
+		new_pk.800
+	}
+}
+
+on_destroy_planet_with_SOLAR_ENERGY_BEAM = {
+	events = {
+		new_pk.900
+	}
+}
+
+on_destroy_planet_with_THE_MCV = {
+	events = {
+		new_pk.1000
+	}
+}
