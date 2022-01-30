@@ -571,11 +571,7 @@ tech_pk_the_almighty = {
 		}
 		modifier = {
 			factor = 10
-			OR = {
-				has_valid_civic = civic_fanatic_purifiers
-				has_valid_civic = civic_hive_devouring_swarm
-				has_valid_civic = civic_machine_terminator
-			}
+			is_homicidal = yes
 		}
 	}
 }

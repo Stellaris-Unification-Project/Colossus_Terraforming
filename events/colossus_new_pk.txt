@@ -38,7 +38,7 @@ planet_event = {
 			limit = {
 				owner = { is_country_type = swarm }
 			}
-			every_country = {
+			every_playable_country = {
 				limit = { has_event_chain = "prethoryn_scourge_chain" }
 				add_event_chain_counter = {
 					event_chain = "prethoryn_scourge_chain"
@@ -594,7 +594,7 @@ planet_event = {
 			limit = {
 				owner = { is_country_type = swarm }
 			}
-			every_country = {
+			every_playable_country = {
 				limit = { has_event_chain = "prethoryn_scourge_chain" }
 				add_event_chain_counter = {
 					event_chain = "prethoryn_scourge_chain"
@@ -692,7 +692,7 @@ planet_event = {
 			limit = {
 				owner = { is_country_type = swarm }
 			}
-			every_country = {
+			every_playable_country = {
 				limit = { has_event_chain = "prethoryn_scourge_chain" }
 				add_event_chain_counter = {
 					event_chain = "prethoryn_scourge_chain"
@@ -822,7 +822,7 @@ planet_event = {
 			limit = {
 				owner = { is_country_type = swarm }
 			}
-			every_country = {
+			every_playable_country = {
 				limit = { has_event_chain = "prethoryn_scourge_chain" }
 				add_event_chain_counter = {
 					event_chain = "prethoryn_scourge_chain"
@@ -1099,7 +1099,7 @@ planet_event = {
 			limit = {
 				owner = { is_country_type = swarm }
 			}
-			every_country = {
+			every_playable_country = {
 				limit = { has_event_chain = "prethoryn_scourge_chain" }
 				add_event_chain_counter = {
 					event_chain = "prethoryn_scourge_chain"
@@ -1192,7 +1192,7 @@ planet_event = {
 				limit = {
 					owner = { is_country_type = swarm }
 				}
-				every_country = {
+				every_playable_country = {
 					limit = { has_event_chain = "prethoryn_scourge_chain" }
 					add_event_chain_counter = {
 						event_chain = "prethoryn_scourge_chain"
@@ -1321,7 +1321,7 @@ planet_event = {
 			}
 			starbase = { 
 				limit = {
-					owner = { is_same_value = from.owner }
+					is_owned_by = from.owner
 				}
 				fleet = { destroy_fleet = this } 
 			}
@@ -1402,7 +1402,7 @@ planet_event = {
 			limit = {
 				owner = { is_country_type = swarm }
 			}
-			every_country = {
+			every_playable_country = {
 				limit = { has_event_chain = "prethoryn_scourge_chain" }
 				add_event_chain_counter = {
 					event_chain = "prethoryn_scourge_chain"
@@ -1678,7 +1678,7 @@ planet_event = {
 			limit = {
 				owner = { is_country_type = swarm }
 			}
-			every_country = {
+			every_playable_country = {
 				limit = { has_event_chain = "prethoryn_scourge_chain" }
 				add_event_chain_counter = {
 					event_chain = "prethoryn_scourge_chain"
@@ -1872,7 +1872,7 @@ planet_event = {
 				limit = {
 					owner = { is_country_type = swarm }
 				}
-				every_country = {
+				every_playable_country = {
 					limit = { has_event_chain = "prethoryn_scourge_chain" }
 					add_event_chain_counter = {
 						event_chain = "prethoryn_scourge_chain"

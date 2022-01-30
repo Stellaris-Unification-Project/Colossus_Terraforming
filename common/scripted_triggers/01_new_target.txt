@@ -121,7 +121,7 @@ can_destroy_planet_with_MINERAL_DISCOVERY_BEAM = {
 				exists = space_owner
 				space_owner = {
 					OR = {
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 						is_country_type = swarm
 						is_country_type = extradimensional
 						is_country_type = extradimensional_2
@@ -134,7 +134,7 @@ can_destroy_planet_with_MINERAL_DISCOVERY_BEAM = {
 				exists = owner
 				owner = {
 					OR = {
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 						is_country_type = swarm
 						is_country_type = extradimensional
 						is_country_type = extradimensional_2
@@ -178,7 +178,7 @@ can_destroy_planet_with_FERTILIZER_BEAM = {
 				exists = space_owner
 				space_owner = {
 					OR = {
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 						is_country_type = swarm
 						is_country_type = extradimensional
 						is_country_type = extradimensional_2
@@ -191,7 +191,7 @@ can_destroy_planet_with_FERTILIZER_BEAM = {
 				exists = owner
 				owner = {
 					OR = {
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 						is_country_type = swarm
 						is_country_type = extradimensional
 						is_country_type = extradimensional_2
@@ -235,7 +235,7 @@ can_destroy_planet_with_SOLAR_ENERGY_BEAM = {
 				exists = space_owner
 				space_owner = {
 					OR = {
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 						is_country_type = swarm
 						is_country_type = extradimensional
 						is_country_type = extradimensional_2
@@ -248,7 +248,7 @@ can_destroy_planet_with_SOLAR_ENERGY_BEAM = {
 				exists = owner
 				owner = {
 					OR = {
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 						is_country_type = swarm
 						is_country_type = extradimensional
 						is_country_type = extradimensional_2
@@ -292,7 +292,7 @@ can_destroy_planet_with_SCIENTIFIC_BEAM = {
 				exists = space_owner
 				space_owner = {
 					OR = {
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 						is_country_type = swarm
 						is_country_type = extradimensional
 						is_country_type = extradimensional_2
@@ -305,7 +305,7 @@ can_destroy_planet_with_SCIENTIFIC_BEAM = {
 				exists = owner
 				owner = {
 					OR = {
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 						is_country_type = swarm
 						is_country_type = extradimensional
 						is_country_type = extradimensional_2
@@ -345,11 +345,11 @@ can_destroy_planet_with_THE_ALMIGHTY = {
 				OR = {
 					AND = {
 						exists = space_owner
-						space_owner = { is_same_value = from.owner }
+						is_owned_by = from.owner
 					}
 					NOT = { exists = space_owner }
 				}
-				NOT = { solar_system = { any_system_planet = { colonizeable_planet = yes } } }
+				NOT = { solar_system = { any_system_planet = { colonizable_planet = yes } } }
 			}
 			AND = {
 				exists = space_owner
@@ -420,7 +420,7 @@ can_destroy_planet_with_THE_MCV = {
 	}
 	custom_tooltip = {
 		fail_text = "requires_no_anomaly"
-		NOT = { has_anomaly = yes }
+		has_anomaly = no
 	}
 	custom_tooltip = {
 		fail_text = "requires_not_minor_planetary_body"
